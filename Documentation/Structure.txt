@@ -1,0 +1,15 @@
+optics-user-management/
+├── src/
+│   ├── config/
+│   │   └── db.js
+│   ├── controllers/
+│   │   ├── userController.js
+│   ├── models/
+│   │   └── User.js
+│   ├── routes/
+│   │   └── userRoutes.js
+│   ├── middleware/
+│   │   └── auth.js
+│   └── app.js
+├── package.json
+└── .env

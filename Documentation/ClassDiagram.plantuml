@@ -1,0 +1,32 @@
+@startuml
+title Optics Management System
+
+class DatosClínicos
+class Optometria
+class Contactologia
+class Pacientes
+class Encargo
+class Venta
+class Catalogo
+class Pedido
+class Inventario
+class Facturacion
+class Profesional
+
+Profesional -- DatosClínicos: registra
+Pacientes o-- DatosClínicos: tienen
+DatosClínicos *-- Optometria
+DatosClínicos *-- Contactologia
+
+Pacientes o-- Encargo: tienen
+Encargo o-- Venta: genera
+Encargo -- Catalogo: busca
+Encargo *-- Pedido: genera
+Catalogo o-- Inventario: busca en 
+Venta -- Facturacion
+Profesional -- Pacientes: atiende
+Profesional o-- Encargo: crea
+Profesional o-- Pedido: hace
+Venta -- Catalogo : "Venta directa"
+
+@enduml
