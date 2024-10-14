@@ -1,0 +1,65 @@
+@startuml
+title Optics Management System - Servicios y Eventos de Dominio
+
+Package ClinicalData {
+  class ServicioDatosClinicos {
+    + RegistrarDatosOptometria(pacienteId, optometriaData)
+    + RegistrarDatosContactologia(pacienteId, contactologiaData)
+    + ObtenerDatosClinicos(pacienteId)
+  }
+
+  class DatosOptometriaRegistrados
+  class DatosContactologiaRegistrados
+}
+
+Package Logistics {
+  class ServicioGestionEncargos {
+    + CrearEncargo(pacienteId, encargoData)
+    + ActualizarEncargo(encargoId, encargoData)
+    + ConsultarEncargos(pacienteId)
+  }
+
+  class ServicioInventario {
+    + ConsultarCatalogo(productos)
+    + ActualizarInventario(productoId, cantidad)
+  }
+
+  class ServicioFacturacion {
+    + GenerarFactura(encargoId)
+    + ProcesarVenta(encargoId, datosPago)
+  }
+
+  class EncargoCreado
+  class PedidoGenerado
+  class VentaProcesada
+  class StockActualizado
+}
+
+Package Users {
+  class ServicioPacientes {
+    + RegistrarPaciente(pacienteData)
+    + ActualizarDatosPaciente(pacienteId, pacienteData)
+    + ObtenerDatosPaciente(pacienteId)
+  }
+
+  class ServicioProfesionales {
+    + AsignarPaciente(profesionalId, pacienteId)
+    + ConsultarPacientesAsignados(profesionalId)
+  }
+
+  class PacienteRegistrado
+  class DatosPacienteActualizados
+  class PacienteAsignado
+}
+
+' Relaciones entre Servicios y Eventos
+
+ServicioDatosClinicos --> DatosOptometriaRegistrados : genera
+ServicioDatosClinicos --> DatosContactologiaRegistrados : genera
+
+ServicioGestionEncargos --> EncargoCreado : genera
+ServicioGestionEncargos --> PedidoGenerado : genera
+ServicioFacturacion --> VentaProcesada : genera
+ServicioInventario --> StockActualizado : genera
+
+@enduml

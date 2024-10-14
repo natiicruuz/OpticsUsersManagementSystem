@@ -1,0 +1,34 @@
+@startuml
+actor "Administrador" as Admin
+actor "Paciente" as Paciente
+actor "Profesional" as Profesional
+
+rectangle "Sistema de Gestión de Óptica" {
+    (Crear Paciente) as UC1
+    (Actualizar Perfil Paciente) as UC2
+    (Eliminar Paciente) as UC3
+    (Listar Pacientes) as UC4
+    
+    (Registrar Datos de Optometría) as UC5
+    (Registrar Datos de Contactología) as UC6
+    (Crear Encargo) as UC7
+    (Generar Pedido) as UC8
+    (Procesar Venta) as UC9
+    (Consultar Inventario) as UC10
+    
+    Admin -up-> UC1
+    Admin -up-> UC2
+    Admin -up-> UC3
+    Admin -up-> UC4
+
+    Profesional -up-> UC5
+    Profesional -up-> UC6
+    Profesional -up-> UC7
+    Profesional -up-> UC8
+    Profesional -up-> UC9
+
+    Paciente -up-> UC2
+    Profesional -up-> UC10
+}
+
+@enduml
